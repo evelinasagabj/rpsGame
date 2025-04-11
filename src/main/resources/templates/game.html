@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <title>RPS GAME</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/game.css">
+    <script src="/javascript/game.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <div>
+        <h1>Game time!</h1>
+        <p>Rock, Paper, Scissor</p>
+    </div>
+
+    <form th:action="@{/game}" method="post">
+        <label for="playerOneValue">Player 1:</label>
+        <select id="playerOneValue" name="playerOneValue" onchange="toggleSubmitButton()">
+            <option value=""></option>
+            <option value="Rock">Rock</option>
+            <option value="Paper">Paper</option>
+            <option value="Scissor">Scissor</option>
+        </select>
+
+        <label for="playerTwoValue">Player 2:</label>
+        <select id="playerTwoValue" name="playerTwoValue" onchange="toggleSubmitButton()">
+            <option value=""></option>
+            <option value="Rock">Rock</option>
+            <option value="Paper">Paper</option>
+            <option value="Scissor">Scissor</option>
+        </select>
+
+        <input id="submitButton" type="submit" value="Let's go!" disabled/>
+    </form>
+
+    <br>
+
+    <div class="result" th:if="${result}">
+        <label class="result-label" th:text="${result}"></label>
+    </div>
+    <br>
+    <div class="result" th:if="${playerOneValue}">
+        <label>Player 1 chose: <span th:text="${playerOneValue}"></span></label>
+    </div>
+    <div class="result" th:if="${playerTwoValue}">
+        <label>Player 2 chose: <span th:text="${playerTwoValue}"></span></label>
+    </div>
+</div>
+</body>
+</html>
